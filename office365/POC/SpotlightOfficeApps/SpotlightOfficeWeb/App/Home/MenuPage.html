@@ -1,0 +1,86 @@
+<div id="menuPage"
+  style="position: fixed; height: 100%; width: 100%; top: 0; margin-top: 0px; margin-left: 0px; margin-bottom: 0px; margin-right: 0px; display: none">
+  <div id="topNavbar" style="height: 39px; display: flex">
+    <div class="planful-logo" style="display: flex; padding-left: 16px; align-items: center; width: 91%">
+      <i class="icn-planful" style="min-width: 74px; height: 23px"></i>
+    </div>
+    <div class="menu-close" style="display: flex; align-items: center; cursor: pointer">
+      <i class="icn-close" style="width: 15px; height: 15px" onclick="toggleAccountmenu()"></i>
+    </div>
+  </div>
+  <div id="menuItems" style="height: 100%; background-color: #c1c1c1">
+    <div id="menuItems-container">
+      <div id="topMenu" style="height: auto; padding-top: 10px; background-color: white; padding-bottom: 40px; top: 0">
+        <div id="analyze" style="display: flex; padding-top: 4px; padding-bottom: 4px; padding-left: 20px">
+          <div class="icon-toolbar-help" style="display: flex">
+            <i class="icn-analyze menuIcon"></i>
+          </div>
+          <div class="item-label" onclick="openFileCabinetForAnalyzeTab()">Analyze</div>
+        </div>
+        <div id="report" style="display: flex; padding-top: 4px; padding-bottom: 4px; padding-left: 20px">
+          <div class="icon-toolbar-help" style="display: flex">
+            <i class="icn-report menuIcon"></i>
+          </div>
+          <div class="item-label" onclick="openFileCabinetForReportTab()">Report</div>
+        </div>
+        <!-- <div id="model" style="display: flex; padding-top: 4px; padding-bottom: 4px; padding-left: 20px">
+          <div class="icon-toolbar-help" style="display: flex">
+            <i class="icn-model menuIcon"></i>
+          </div>
+          <div class="item-label">Model</div>
+        </div> -->
+        <div class="divider"></div>
+        <div id="account" style="display: flex; padding-top: 4px; padding-bottom: 4px; padding-left: 20px">
+          <div class="icon-toolbar-help" style="display: flex">
+            <i class="icn-account menuIcon"></i>
+          </div>
+          <div class="item-label" onclick="toggleAccountInfo()">Account Details</div>
+        </div>
+        <div id="logout" style="display: flex; padding-top: 4px; padding-bottom: 4px; padding-left: 20px">
+          <div class="icon-toolbar-help" style="display: flex">
+            <i class="icn-logout menuIcon"></i>
+          </div>
+          <div class="item-label" onclick="handleLogoutClick()">Logout</div>
+        </div>
+      </div>
+
+      <div id="bottomMenu" style="background-color: white; padding-bottom: 60px; height: auto">
+        <div title="Resources" style="display: flex; padding-top: 5px; padding-left: 20px">
+          <div class="" style="font-weight: bold">Resources</div>
+        </div>
+        <div class="divider"></div>
+        <div id="help" style="display: flex; padding-top: 4px; padding-bottom: 4px; padding-left: 20px">
+          <div class="icon-toolbar-help" style="display: flex">
+            <i class="icn-help menuIcon"></i>
+          </div>
+          <div class="item-label"><a href="https://help.planful.com/" target="_blank">Help</a></div>
+        </div>
+        <div id="community" style="display: flex; padding-top: 4px; padding-bottom: 4px; padding-left: 20px">
+          <div class="icon-toolbar-help" style="display: flex">
+            <i class="icn-community menuIcon"></i>
+          </div>
+          <div class="item-label"><a href="https://svcsdev2-planfulsupporttest1.cs203.force.com/customer/s/" target="_blank">Community</a></div>
+        </div>
+        <div id="support" style="display: flex; padding-top: 4px; padding-bottom: 4px; padding-left: 20px">
+          <div class="icon-toolbar-help" style="display: flex">
+            <i class="icn-support menuIcon"></i>
+          </div>
+          <div class="item-label"><a href="https://svcsdev2-planfulsupporttest1.cs203.force.com/customer/s/" target="_blank">Support</a></div>
+        </div>
+        <div id="solutions" style="display: flex; padding-top: 4px; padding-bottom: 4px; padding-left: 20px">
+          <div class="icon-toolbar-help" style="display: flex">
+            <i class="icn-solutions menuIcon"></i>
+          </div>
+          <div class="item-label"><a href="https://solutionexchange.hostanalytics.com/#/solutions/" target="_blank">Solutions</a></div>
+        </div>
+        <div id="whatNew" style="display: flex; padding-top: 4px; padding-bottom: 4px; padding-left: 20px">
+          <div class="icon-toolbar-help" style="display: flex">
+            <i class="icn-whatnew menuIcon"></i>
+          </div>
+          <div class="item-label"><a href="https://help.planful.com/docs/mar2023/" target="_blank">What's New</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

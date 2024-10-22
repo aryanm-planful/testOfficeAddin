@@ -1,0 +1,14 @@
+D:\Modeling\office365\POC\SpotlightOfficeApps\SpotlightOfficeApp\bin\Debug\roslyn\csc.exe
+D:\Modeling\office365\POC\SpotlightOfficeApps\SpotlightOfficeApp\bin\Debug\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Modeling\office365\POC\SpotlightOfficeApps\SpotlightOfficeApp\bin\Debug\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Modeling\office365\POC\SpotlightOfficeApps\SpotlightOfficeApp\bin\Debug\roslyn\Microsoft.CodeAnalysis.dll
+D:\Modeling\office365\POC\SpotlightOfficeApps\SpotlightOfficeApp\bin\Debug\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Modeling\office365\POC\SpotlightOfficeApps\SpotlightOfficeApp\bin\Debug\roslyn\Microsoft.CSharp.Core.targets
+D:\Modeling\office365\POC\SpotlightOfficeApps\SpotlightOfficeApp\bin\Debug\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Modeling\office365\POC\SpotlightOfficeApps\SpotlightOfficeApp\bin\Debug\roslyn\System.Collections.Immutable.dll
+D:\Modeling\office365\POC\SpotlightOfficeApps\SpotlightOfficeApp\bin\Debug\roslyn\System.Reflection.Metadata.dll
+D:\Modeling\office365\POC\SpotlightOfficeApps\SpotlightOfficeApp\bin\Debug\roslyn\vbc.exe
+D:\Modeling\office365\POC\SpotlightOfficeApps\SpotlightOfficeApp\bin\Debug\roslyn\VBCSCompiler.exe
+D:\Modeling\office365\POC\SpotlightOfficeApps\SpotlightOfficeApp\bin\Debug\roslyn\VBCSCompiler.exe.config
+D:\Modeling\office365\POC\SpotlightOfficeApps\SpotlightOfficeApp\bin\Debug\SpotlightOfficeApp.dll.config
+D:\Modeling\office365\POC\SpotlightOfficeApps\SpotlightOfficeApp\obj\Debug\SpotlightOfficeApp.csproj.CoreCompileInputs.cache

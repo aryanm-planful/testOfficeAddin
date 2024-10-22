@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Published:70EDFC97-B41D-43C5-B751-7C00AD999804-->
+<App xmlns="http://schemas.microsoft.com/sharepoint/2012/app/manifest" Name="SpotlightOfficeApp" ProductID="{cc15358a-fb98-4910-bda0-a426ccdc038d}" Version="1.0.0.0" SharePointMinVersion="15.0.0.0">
+  <Properties>
+    <Title>SpotlightOfficeApp</Title>
+    <StartPage>https://go.microsoft.com/fwlink/?LinkID=278993</StartPage>
+  </Properties>
+  <AppPrincipal>
+    <Internal />
+  </AppPrincipal>
+</App>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <?!= include("planfulLogo_svg"); ?>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <style>
+        /* Add a right margin to each icon */
+        input.form-control.search-input {
+            box-shadow: none;
+        }
+
+        .search-input-group {
+            margin-bottom: 20px;
+            width: 100%;
+            border-radius: 2px;
+        }
+
+        .input-group-prepend {
+            background-color: white;
+            border-radius:2px;
+        }
+
+        .input-group-text {
+            border-left: none;
+            background-color: inherit;
+            border-radius: 2px;
+        }
+
+        input.form-control.search-input {
+            box-shadow: none;
+        }
+
+        .form-control {
+            border-right: none;
+        }
+
+        .input-group-text {
+            border-left: none;
+            background-color: inherit;
+            border-radius: 2px;
+        }
+
+
+        .fa {
+            margin-left: -12px;
+            margin-right: 8px;
+        }
+
+        .fa-check{
+          margin-left: -20px;
+          margin-right: 7px;
+        }
+
+        .narrow {
+            margin-bottom: 0.5rem;
+        }
+
+        #submitBtn {
+            background-color: #6369D1;
+            color: #fff;
+            padding: 5px 2px;
+            text-align: center;
+            width: 80px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 1px solid #6369D1;
+        }
+
+            /* #submitBtn:hover {
+                background-color: #242eda;
+            } */
+
+            /* #submitBtn:focus {
+                outline: 0px;
+                box-shadow: 0 0 0 .2rem #fff, 0 0 0 .35rem #069;
+            } */
+
+        .tenantform-center {
+            display: block;
+            justify-content: center;
+            margin: 1rem;
+            padding-left: auto;
+            padding-right: auto;
+        }
+
+        .tenant-search input {
+            width: 100%;
+            line-height: 30px;
+            font-size: 14px;
+            padding: 0;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+            background: #FFFFFF;
+            border: 1px solid #F4F4F4;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            list-style: none;
+            max-height: 200px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+
+        li {
+            font-size: 14px;
+            padding: 10px 10px 10px 30px;
+            background: transparent;
+            cursor: pointer;
+            position: relative;
+            border: 1px solid #F2F2F2;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+            li:hover {
+                background: #F2F2F2;
+            }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.search-input').keyup(function () {
+                var filter, ul, li, a, i, txtValue;
+                var searchedKeyword = $(this).val();
+                if (searchedKeyword.trim() !== "") {
+                    $(".input-group-text").html('<i class="fa fa-spinner fa-spin"></i>');
+                    filter = searchedKeyword.toUpperCase();
+                    ul = document.getElementById("tenant-list");
+                    li = ul.getElementsByTagName("li");
+                    for (i = 0; i < li.length; i++) {
+                        txtValue = li[i].id;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            li[i].style.display = "";
+                        } else {
+                            li[i].style.display = "none";
+                        }
+                    }
+                }
+                else {
+                    $(".input-group-text").html('<i class=""></i>');
+                    ul = document.getElementById("tenant-list");
+                    li = ul.getElementsByTagName("li");
+                    for (i = 0; i < li.length; i++) {
+                        li[i].style.display = "";
+                    }
+                }
+            });
+
+            document.getElementById("loadingIcnLst").className += " fa fa-spinner fa-spin";
+            document.getElementById("submitBtn").disabled = true;
+            google.script.run.withSuccessHandler(tenantSelection).getListOfTenants();
+        });
+
+
+        // Create function outside loop
+        function dynamicEvent() {
+            if (this.name != lastSelectedTenantId) {
+                this.innerHTML = '<i class=" fa fa-check" style="color: #6369D1;"></i>' + this.name;
+
+                var lastSelectedTenant = document.getElementById(lastSelectedTenantId);
+                lastSelectedTenant.innerHTML = '<i></i>' + lastSelectedTenant.name;
+                lastSelectedTenantId = this.id;
+            }
+        }
+
+        var lastSelectedTenantId = "";
+        function tenantSelection(resp) {
+            try {
+                if (resp.status == true) {
+                    var listData = JSON.parse(resp.data);
+                    var ul = document.getElementById("tenant-list");
+                    for (var i = 0; i < listData.length; i++) {
+                        var name = listData[i].displayName;
+                        var li = document.createElement('li');
+                        var img = document.createElement('i');
+
+                        li.id = listData[i].code;
+                        li.name = listData[i].code;
+                        if (resp.lastTenant.lastLogInTenant == listData[i].code) {
+
+                            img.className += " fa fa-check";
+                            img.style["color"] = "#04AA6D";
+
+                            lastSelectedTenantId = listData[i].code;
+                        }
+                        li.appendChild(img);
+
+                        li.onclick = dynamicEvent;
+                        li.appendChild(document.createTextNode(name));
+                        ul.appendChild(li);
+                    }
+                }
+                else {
+                    document.getElementById("displayReturn").innerHTML = resp.message;
+                }
+
+            } catch (err) {
+                document.getElementById("displayReturn").innerHTML = err.message;
+            }
+            finally {
+                document.getElementById("submitBtn").disabled = false;
+                $("#loadingIcnLst").hide();
+                $("#loadStatus").hide();
+               
+            }
+        }
+        function selectTenant() {
+            try {
+               var lastSelectedTenant = document.getElementById(lastSelectedTenantId);
+                google.script.run.ProceedToLogin(lastSelectedTenant.id);
+            }
+            catch (err) {
+                alert(err.message);
+            }
+        }
+
+    </script>
+</head>
+
+<body id="tenantBody">
+    <div class="planfulLogo_center">
+        <div class="planful-logo">
+        </div>
+    </div>
+    <div class="tenantform-center">
+
+        <form>
+            <div style="padding-top: 30px">
+                <div>
+                    <div>
+                        <label style="padding-bottom:10px">Select Your Application</label>
+
+                        <div class="input-group  search-input-group">
+                            <input type="text" class="form-control search-input " placeholder="Search" aria-label="Search"
+                                   aria-describedby="basic-addon1">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                        <div style="padding-left: 10px" id="loadStatus"> <i id="loadingIcnLst"></i>Loading</div>
+                        <div>
+                            <ul id="tenant-list"></ul>
+                            <ul id="searched-tenant-list"></ul>
+                        </div>
+
+                        <div>
+                            <button id="submitBtn" onclick="selectTenant()"><i id="loadingIcnBtn"></i>Launch</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="displayReturn" style="color: red;"></div>
+
+        </form>
+    </div>
+
+</body>
+</html>

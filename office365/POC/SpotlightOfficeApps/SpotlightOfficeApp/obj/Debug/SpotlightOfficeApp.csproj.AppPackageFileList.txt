@@ -1,0 +1,2 @@
+bin\Debug\app.publish\OfficeAppManifests\SpotlightOfficeApp.xml
+D:\Modeling\office365\POC\SpotlightOfficeApps\SpotlightOfficeApp\bin\Debug\app.publish\SpotlightOfficeApp.app

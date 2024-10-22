@@ -1,0 +1,15 @@
+{
+  "name": "gsheet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Code.js",
+  "scripts": {
+    "watch": "clasp push --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bishwajit Jha",
+  "license": "ISC",
+  "dependencies": {
+    "@types/google-apps-script": "^1.0.56"
+  }
+}

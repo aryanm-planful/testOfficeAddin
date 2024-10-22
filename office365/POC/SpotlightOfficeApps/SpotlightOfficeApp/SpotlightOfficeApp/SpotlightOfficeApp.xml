@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--Created:cb85b80c-f585-40ff-8bfc-12ff4d0e34a9-->
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"  xsi:type="TaskPaneApp">
+  <Id>970d430b-fe2f-4f5a-a9e1-5e301b1df281</Id>
+  <Version>1.0.0.4</Version>
+  <ProviderName>[Provider name]</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Spotlight for Office" />
+  <Description DefaultValue="Spotlight for Office."/>
+  <IconUrl DefaultValue="http://localhost/SpotlightOfficeWeb/Images/Planful_logo_final_RGB_Vertical_Color-32.png" />
+  <HighResolutionIconUrl DefaultValue="http://localhost/SpotlightOfficeWeb/Images/Planful_logo_final_RGB_Vertical_Color-64.png" />
+  <SupportUrl DefaultValue="https://help.planful.com/" />
+
+  <Hosts>
+    <Host Name="Workbook" />
+  </Hosts>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="http://localhost/SpotlightOfficeWeb/App/Home/AddinHomePage.html" />
+
+    <!--<SourceLocation DefaultValue="https://spotlightxlwebaddin.azurewebsites.net/App/Home/AddinHomePage.html" />-->
+  </DefaultSettings>
+
+
+  <Permissions>ReadWriteDocument</Permissions>
+  
+</OfficeApp>

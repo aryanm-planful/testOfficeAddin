@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Tenant Selection</title>
+    <base target="_top">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" />
+    <style>
+        .narrow {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <hr />
+     <form>
+        <div style="padding: 10px">
+            <div class="form-row">
+                <div class="form-group col-md-6 narrow">
+                  <label for="dlTenants" style="margin-bottom: 0rem">List of Tenants</label>
+                  <select id="dlTenants" class="form-control"></select>
+                </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6 narrow">
+                  <input type="button" value="Select Tenant" onclick="selectTenant()" class="btn btn-primary" />
+              </div>
+            </div>
+        </div>
+      </form>
+    <script type="text/javascript">
+        (function () {
+            google.script.run.withSuccessHandler(tenantSelection).getListOfTenants();
+        })();
+        function tenantSelection(resp) {
+            var listData = JSON.parse(resp);
+            listData.sort();
+            var dlTenants = document.getElementById("dlTenants");
+
+            //Add the Options to the DropDownList.
+            for (var i = 0; i < listData.length; i++) {
+                var option = document.createElement("OPTION");
+                option.innerHTML = listData[i].displayName;
+                option.value = listData[i].code;
+
+                //Add the Option element to DropDownList.
+                dlTenants.options.add(option);
+            }
+        }
+        function selectTenant() {
+            var selectedTnt = document.getElementById("dlTenants").value;
+            google.script.run.ProceedToLogin(selectedTnt);
+        }
+    </script>
+</body>
+</html>

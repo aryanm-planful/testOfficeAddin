@@ -1,0 +1,64 @@
+
+<html>
+<head>
+    <base target="_top">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" />
+    <style>
+        .narrow {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+    <script>
+        function SubmitRecord() {
+            document.getElementById("displayReturn").innerHTML = "";
+            var appUrl = document.getElementById("appUrl").value;
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            const domain = (new URL(appUrl)).hostname;
+
+            google.script.run.withSuccessHandler(returnBack).ValidateUser(domain, appUrl, username, password);
+        }
+
+        function returnBack(stringBack) {
+            document.getElementById("displayReturn").innerHTML = stringBack;
+            document.getElementById("username").value = '';
+            document.getElementById("password").value = '';
+        }
+
+    </script>
+</head>
+<body>
+    <form>
+        <div style="padding: 10px">
+            <div class="form-row">
+                <div class="form-group col-md-6 narrow">
+                    <label for="appUrl" style="margin-bottom: 0rem">Application URL</label>
+                    <input type="text" id="appUrl" value="https://modelsbx.planful.com" class="form-control" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6 narrow">
+                    <label for="username" style="margin-bottom: 0rem">UserName</label>
+                    <input type="text" id="username" value="qaautomation@planful.com" class="form-control" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6 narrow">
+                    <label for="password" style="margin-bottom: 0rem">Password</label>
+                    <input type="password" id="password" value="Test@123" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6 narrow">
+                    <input type="button" value="Submit" onclick="SubmitRecord()" class="btn btn-primary" />
+                </div>
+            </div>
+    </form>
+    <div id="displayReturn"></div>
+    </div>
+
+</body>
+</html>

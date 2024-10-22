@@ -1,0 +1,50 @@
+<div id="container">
+  <div id="header">
+    <nav style="display:inline-flex;align-items: center;">
+      <button  onclick="toggleAccountmenu()" id="social_icons" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
+        <i class="homepage-main-logo" aria-hidden="true"></i>
+        <i class=" fa-solid fa-bars menuButton "></i>
+        </button>
+      <div class="nav nav-tabs" id="ribbon-nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-analyze-tab" data-bs-toggle="tab" data-bs-target="#nav-analyze" type="button" role="tab" aria-controls="nav-analyze" onclick="creatingCabinet('adhoc')" aria-selected="true">Analyze</button>
+        <button class="nav-link" onclick="creatingCabinet('executive')" id="nav-report-tab" data-bs-toggle="tab" data-bs-target="#nav-report" type="button" role="tab" aria-controls="nav-report" aria-selected="false">Report</button>
+      </div>
+    </nav>
+    <div class="tab-content" id="ribbon-nav-tabContent">
+      <div class="tab-pane show active" id="nav-analyze" role="tabpanel" aria-labelledby="nav-analyze-tab">
+        <nav class="navbar">
+          <ul class="navbar-nav">
+            <!--<li class="nav-item   analyze-functional-nav-item getData-nav-item" onclick="adhocGetData()" title="Get Data">
+              <i class="custom-icon getData-icon primaryToolbarIcon nonCaretIcon" aria-hidden="true"></i>
+            </li>
+              <li class="nav-item   analyze-functional-nav-item" onclick="CreateTestChart()" title="Create Chart">
+                  <i class="custom-icon linechart-icon primaryToolbarIcon nonCaretIcon" aria-hidden="true"></i>
+              </li>-->
+              <li>
+                  <button onclick="adhocGetData()">GetData</button>
+              </li>
+
+              <li>
+                  <button onclick="CreateLineChart()">Create Line Chart</button>
+              </li>
+
+              <li>
+                  <button onclick="CreateColumnChart()">Create Column Chart</button>
+              </li>
+           
+
+
+          </ul>
+        </nav>
+      </div>
+      <!--<div class="tab-pane fade" id="nav-report" role="tabpanel" aria-labelledby="nav-report-tab">
+        <nav class="navbar">
+          <ul class="navbar-nav">
+            <li class="nav-item disabled report-functional-nav-item " onclick="refreshReport()" title="Refresh">
+              <i class="custom-icon refresh-icon nonCaretIcon" aria-hidden="true"></i>
+            </li>
+          </ul>
+        </nav>
+      </div>-->
+    </div>
+  </div>

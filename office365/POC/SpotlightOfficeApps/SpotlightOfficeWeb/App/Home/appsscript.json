@@ -1,0 +1,26 @@
+{
+  "timeZone": "Asia/Kolkata",
+  "dependencies": {
+    "libraries": [
+      {
+        "userSymbol": "Cheerio",
+        "version": "14",
+        "libraryId": "1ReeQ6WO8kKNxoaA_O0XEQ589cIrRvEBA9qcWpNqdOP17i47u6N9M5Xh0"
+      },
+      {
+        "userSymbol": "HtmlParser",
+        "version": "7",
+        "libraryId": "1gMNYu6-SlYdKbfFMSXZz718quQVgll-qKhNobIaJwMVYL_9EgZ9GQlmp"
+      }
+    ],
+    "enabledAdvancedServices": [
+      {
+        "userSymbol": "Drive",
+        "version": "v2",
+        "serviceId": "drive"
+      }
+    ]
+  },
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8"
+}

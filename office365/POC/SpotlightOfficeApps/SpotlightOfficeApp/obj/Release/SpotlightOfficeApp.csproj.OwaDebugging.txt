@@ -1,0 +1,7 @@
+False
+4b4155e8-2272-4490-8da3-0c18e71227598af92fda-719a-4790-b5ed-eeb51dcf6580
+{03ae8bdc-612f-4dc6-bb6f-533e9ffe2f72}{fb17dedd-f21d-4715-9f97-93c8bd691d37}
+{092f4611-a367-47ab-9774-52c87211943b}
+1.0.0.0
+SpotlightOfficeApp
+_layouts/15/

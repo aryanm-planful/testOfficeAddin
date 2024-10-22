@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base target="_top">
+    <?!= include("planfulLogo_svg"); ?>
+    <?!= include("HttpAPI"); ?>
+    <?!= include("Constants"); ?>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title></title>
+    <script src="../../Scripts/jquery-1.9.1.js" type="text/javascript"></script>
+
+    <link href="../../Content/Office.css" rel="stylesheet" type="text/css" />
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
+
+    <!-- To enable offline debugging using a local reference to Office.js, use:                        -->
+    <!-- <script src="../../Scripts/Office/MicrosoftAjax.js" type="text/javascript"></script>  -->
+    <!-- <script src="../../Scripts/Office/1/office.js" type="text/javascript"></script>  -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href='https://fonts.googleapis.com/css2?family=Roboto' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <style>
+        /* Add a right margin to each icon */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+        }
+
+        .fa {
+            margin-left: -12px;
+            margin-right: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 9.8px 10px;
+            margin: -8px -10px;
+            display: inline-block;
+            border-style: none;
+            outline: none;
+        }
+
+
+        button {
+            position: absolute;
+            background-color: #6369D1;
+            color: #fff;
+            padding: 9.333px 2px;
+            text-align: center;
+            width: 80px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 1px solid #6369D1;
+            margin-top: 30px;
+            margin-left: 2px;
+            z-index: 2;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        div {
+            border-radius: 5px;
+        }
+
+        fieldset {
+            width: 98%;
+            max-width: 265px;
+            padding: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            position: relative;
+            margin-top: 20px;
+
+        }
+
+        legend {
+            font-size: 13px;
+            color: #ccc;
+        }
+
+        .form-center {
+            display: block;
+            justify-content: center;
+            margin: 1rem;
+            padding-left: auto;
+            padding-right: auto;
+        }
+
+        #displayReturn {
+            margin-left: 10px;
+            width: 200px;
+            color: red;
+            overflow-wrap: break-word;
+        }
+
+        #arrow_down {
+          border: solid #ccc;
+          border-width: 0 3px 3px 0;
+          display: inline-block;
+          padding: 3px;
+          transform: rotate(45deg);
+          -webkit-transform: rotate(45deg);
+          position: absolute;
+          top: 0;
+          right: 0;
+          margin-top: 8px;
+          margin-right: 10px;
+          cursor: pointer;
+        }
+
+        #arrow_down.arrow_up {
+          transform: rotate(-135deg);
+          -webkit-transform: rotate(-135deg);
+        }
+
+        #appUrlList {
+            position: absolute;
+            padding: 0;
+            margin: 0;
+            margin-left: 2px;
+            background: #FFFFFF;
+            border-radius: 4px;
+            list-style: none;
+            overflow: auto;
+            max-height: 0;
+            transition: max-height 00.5s, box-shadow 00.5s;
+            z-index: 3;
+            width: 87%;
+            max-width: 265px;
+            
+        }
+
+        #appUrlList.open {
+          max-height: 100px; 
+          box-shadow: 1px 7px 10px rgb(0 0 0 / 20%);
+        }
+
+        option {
+            font-size: 14px;
+            padding: 10px 32px 10px 10px;
+            background: transparent;
+            cursor: pointer;
+            position: relative;
+            border: 1px solid #F2F2F2;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+            option:hover {
+                background: #F2F2F2;
+            }
+
+        #backdrop {
+         padding-top:0;
+       }
+
+       #backdrop.opendropdown {
+          position: fixed;
+          width: 100%;
+          /* height: 100%; */
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 1;
+          cursor: pointer;
+      }
+      
+      #header {
+         font-family: Roboto;
+         font-size: 18px;
+         font-weight: 400;
+         line-height: 24px;
+      }
+
+      #description {
+         font-family: Roboto;
+         font-size: 13px;
+         font-weight: 400;
+         line-height: 18px;
+      }
+
+    </style>
+    <script>
+        (function () {
+            addIframeListeners();
+            //google.script.run.withSuccessHandler(urlListUpdate).getListOfUrls();
+        })();
+
+        function addIframeListeners() {
+            if (window.addEventListener) {
+                window.addEventListener("message", iframeListener);
+            } else {
+                window.attachEvent("message", iframeListener);
+            }
+        }
+
+        function SubmitLaunch() {
+            document.getElementById("displayReturn").innerHTML = "";
+            var appUrl = document.getElementById("appUrl").value;
+            if (!validateUrl(appUrl)) {
+                return;
+            }
+
+            document.getElementById("appUrl").value = appUrl;
+            openRequestedTab(appUrl, 'LoginWindow');
+        }
+
+        let windowObjectReference = null; // global variable
+        function openRequestedTab(url, windowName) {
+            let windowFeatures = 'popup,resizable=1,left=200,top=100,width=700,height=500';
+
+            if (windowObjectReference == null || windowObjectReference.closed) {
+                windowObjectReference = window.open(url + '?SPOTLIGHT4OFFICE=TRUE', windowName, windowFeatures);
+            } else {
+                windowObjectReference.focus();
+            }
+        }
+
+        function iframeListener(event) {
+           if(event.data.command == 'onLogin'){
+            let message = {
+              command: 'getToken'
+            };
+            event.source.postMessage(message, event.origin);
+           }
+
+          if(event.data.command == 'onReceiveToken' && event.data.params){
+            if (windowObjectReference !== null) {
+               windowObjectReference.close();
+            }
+            let appUrl = document.getElementById("appUrl").value;
+            google.script.run.withSuccessHandler(launchHomePage).handleLogin(appUrl, event.data);
+           }
+           
+        }
+
+        $(document).ready(function () {
+            google.script.run.withSuccessHandler(onLoginStoredMetaData).getLoginStoredMetaData();
+        });
+
+        function launchHomePage(){
+            http.fetch(
+                apiUrls.user.userInformation,
+                http.GET,
+                null,
+                (res) => {
+                    google.script.run.launchHomePage(res);
+                },
+                (err) => {
+                }
+            )
+        }
+
+        function onLoginStoredMetaData(response) {
+            if (response === null || response === undefined) {
+                return;
+            }
+
+            document.getElementById("appUrl").value = response.url;
+            document.getElementById("username").value = response.userName;
+        }
+
+        function urlListUpdate(listData) {
+            var list = document.getElementById("appUrlList");
+            listData.forEach(function (item) {
+                var option = document.createElement('option');
+                option.innerHTML = item;
+                option.addEventListener('click', (e) => {
+                    document.getElementById('appUrl').value = e.target.value;
+                    closedropdown();
+                })
+                list.appendChild(option);
+            });
+        }
+
+        function isValidURL(url) {
+            var urlPattern = new RegExp('^(https?:\\/\\/)?((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|((\\d{1,3}\\.){3}\\d{1,3}))(\\:\\d+)?$', 'i');
+            return urlPattern.test(url);
+        }
+
+        function validateUrl(appUrl) {
+            if (appUrl.length == 0) {
+                document.getElementById("displayReturn").innerHTML = "Please enter the url.";
+                return false;
+            }
+            
+            if (appUrl.startsWith("http://")) {
+                appUrl = "https://" + appUrl.slice(7);
+            }
+
+            if (!appUrl.startsWith("https://")) {
+                appUrl = "https://" + appUrl;
+            }
+
+            if (appUrl.endsWith('/')) {
+                appUrl = appUrl.slice(0, appUrl.lastIndexOf('/'));
+            }
+
+            document.getElementById("appUrl").value = appUrl;
+            return true;
+        }
+
+        function SubmitLogin() {
+            document.getElementById("displayReturn").innerHTML = "";
+            var appUrl = document.getElementById("appUrl").value;
+            if (!validateUrl(appUrl)) {
+                return;
+            }
+
+            appUrl = document.getElementById("appUrl").value;
+            var username = document.getElementById("username").value;
+            if (username.length == 0) {
+                document.getElementById("displayReturn").innerHTML = "Please enter the username.";
+                return;
+            }
+
+            var password = document.getElementById("password").value;
+            if (password.length == 0) {
+                document.getElementById("displayReturn").innerHTML = "Please enter the password.";
+                return;
+            }
+
+            document.getElementById("loadingIcn").className += " fa fa-spinner fa-spin";
+            document.getElementById("submitLogin").disabled = true;
+
+            google.script.run.withSuccessHandler(returnBack).ValidateUser(appUrl, username, password);
+        }
+
+        function returnBack(stringBack) {
+            document.getElementById("submitLogin").disabled = false;
+
+            document.getElementById("loadingIcn").className = "";
+            document.getElementById("displayReturn").innerHTML = stringBack;
+            document.getElementById("password").value = '';
+        }
+
+        function showDropdown() {
+          appUrlList.classList.add("open");
+          backdrop.classList.add("opendropdown");
+          document.getElementById("backdrop").style.display = "block";
+          arrow_down.classList.add("arrow_up");
+
+          var input, filter, option, i;
+          input = document.getElementById("appUrl");
+          filter = input.value.toUpperCase();
+          div = document.getElementById("appUrlList");
+          option = div.getElementsByTagName("option");
+          for (i = 0; i < option.length; i++) {
+            txtValue = option[i].textContent || option[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              option[i].style.display = "";
+            } else {
+              option[i].style.display = "none";
+            }
+          }
+          
+        }
+
+        function closedropdown(){
+          appUrlList.classList.remove("open");
+          arrow_down.classList.remove("arrow_up");
+          document.getElementById("backdrop").style.display = "none";  
+        }
+
+    </script>
+</head>
+<body style="margin: 0px">
+
+    <div class="planfulLogo_center">
+        <div class="planful-logo">
+        </div>
+    </div>
+    <div class="form-center">
+        <form>
+            <p id="header">Welcome to Planful for Google Sheets</p>
+            <p id="description">View reports and run ad hoc analyses directly in Google Sheets while always keeping data updated from Planful's single source of truth.</p>  
+                <fieldset>
+                    <legend>URL</legend>
+                    <input onkeydown ="showDropdown()" id="appUrl" name="appUrl" autocomplete="off">
+                    <i id="arrow_down" onclick="showDropdown()" ></i>
+                </fieldset>
+                <ul id="appUrlList"></ul>
+                <div id="backdrop" onclick="closedropdown()"></div>
+
+            <div style="display: none;">
+                <fieldset>
+                    <legend>Username</legend>
+                    <input type="text" id="username">
+                </fieldset>
+            </div>
+            
+            <div style="display: none;">
+                <fieldset>
+                    <legend>Password</legend>
+                    <input type="password" id="password">
+                </fieldset>
+            </div>
+
+            <div id="displayReturn"></div>
+            <button id="submitLaunch"  onclick="closedropdown(); SubmitLaunch()">
+                Launch
+            </button>
+            <!-- <button id="submitLogin" style="display: none;" onclick="SubmitLogin()">
+                <i id="loadingIcn"></i>Login
+            </button>
+            -->
+            <div>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title></title>
+    <script src="../../Scripts/jquery-1.9.1.js" type="text/javascript"></script>
+
+    <link href="../../Content/Office.css" rel="stylesheet" type="text/css" />
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
+
+    <!-- To enable offline debugging using a local reference to Office.js, use:                        -->
+    <!-- <script src="../../Scripts/Office/MicrosoftAjax.js" type="text/javascript"></script>  -->
+    <!-- <script src="../../Scripts/Office/1/office.js" type="text/javascript"></script>  -->
+
+    <link href="../App.css" rel="stylesheet" type="text/css" />
+    <script src="../App.js" type="text/javascript"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base target="_top">
+    <link rel="stylesheet" href="Main_Css.css">
+    <link rel="stylesheet" href="menuIcons.css">
+    <link rel="stylesheet" href="FileCabinet-Icons.css">
+    <link rel="stylesheet" href="ToolBar-Icons.css">
+    <link rel="stylesheet" href="Page_Loading_css.css">
+    <script type="text/javascript" src="adhocViewResp.js"></script>
+   
+    <!--<?!= include("Main_Css"); ?>
+    <?!= include("menuIcons"); ?>-->
+    <!--<?!= include("FileCabinet-Icons"); ?>-->
+    <!--<?!= include("ToolBar-Icons"); ?>-->
+    <!--<?!= include("Page_Loading_css"); ?>-->
+    <script>
+       
+        $(document).ready(function () {
+            //var obj = JSON.parse('{"id":"1097_bashmodel_default_run","state":{"source":{"viewId":"1097_bashmodel_default_run","properties":{"model":"1097_BashModel"},"options":{"calculation":"","enableComments":"false","showHidden":"false","indent":"false","display":"2","format":"3","save":"false","repeatMembers":"true","suppressColumns":"1","dimensionNumberFormat":"","suppressRows":"1","width":"-1","attributes":"","decimal":"0","attributesDisplay":"2"},"groups":[],"page":[{"dimension":"Time","members":["Year"],"hierarchyRoots":["1"]},{"dimension":"Location","members":["India"],"hierarchyRoots":["1"]}],"column":[{"dimension":"Name","members":["Names"],"hierarchyRoots":["1"]}],"row":[{"dimension":"Class","members":["Class"],"hierarchyRoots":["1"]}],"values":[[null]]}},"ranges":[{"startRow":1,"startColumn":1,"endRow":1,"endColumn":1,"type":"FIXED","dimension":"Time","values":["Year"],"maps":{},"hierarchyRoots":["1"]},{"startRow":1,"startColumn":1,"endRow":1,"endColumn":1,"type":"DROPDOWN","maps":{"hidden":"false","selection":[{"rootId":"1","member":"Year"}],"display":"name","model":"1097_BashModel","type":"member","dimension":"Time"}},{"startRow":1,"startColumn":1,"endRow":1,"endColumn":1,"type":"FORMAT","maps":{}},{"startRow":2,"startColumn":1,"endRow":2,"endColumn":1,"type":"FIXED","dimension":"Location","values":["India"],"maps":{},"hierarchyRoots":["1"]},{"startRow":2,"startColumn":1,"endRow":2,"endColumn":1,"type":"DROPDOWN","maps":{"hidden":"false","selection":[{"rootId":"1","member":"India"}],"display":"name","model":"1097_BashModel","type":"member","dimension":"Location"}},{"startRow":2,"startColumn":1,"endRow":2,"endColumn":1,"type":"FORMAT","maps":{}},{"startRow":3,"startColumn":2,"endRow":3,"endColumn":2,"type":"DYNAMIC_COLUMN","dimension":"Name","values":["Names"],"maps":{},"hierarchyRoots":["1"]},{"startRow":3,"startColumn":2,"endRow":3,"endColumn":2,"type":"DROPDOWN","maps":{"hidden":"false","selection":[{"rootId":"1","member":"Names"}],"display":"name","model":"1097_BashModel","type":"member","dimension":"Name"}},{"startRow":3,"startColumn":2,"endRow":3,"endColumn":2,"type":"FORMAT","maps":{}},{"startRow":4,"startColumn":1,"endRow":4,"endColumn":1,"type":"DYNAMIC_ROW","dimension":"Class","values":["Class"],"maps":{},"hierarchyRoots":["1"]},{"startRow":4,"startColumn":1,"endRow":4,"endColumn":1,"type":"DROPDOWN","maps":{"hidden":"false","selection":[{"rootId":"1","member":"Class"}],"display":"name","model":"1097_BashModel","type":"member","dimension":"Class"}},{"startRow":4,"startColumn":2,"endRow":4,"endColumn":2,"type":"DYNAMIC_GRID","values":[null],"maps":{},"hierarchyRoots":[]},{"startRow":4,"startColumn":2,"endRow":4,"endColumn":2,"type":"FORMAT","maps":{"decimal_place":"0","numeric_format":"Number"}},{"startRow":1,"startColumn":1,"endRow":1,"endColumn":2,"type":"FORMAT","maps":{"width":-1}}],"actions":[],"events":{},"options":{"enableComments":"false","runtimeDisplayOptions":{"displayOption":"2","showHidden":false,"indent":false,"format":"3","repeatMembers":true,"suppressColumns":"1","suppressRows":"1","dimensionNumberFormat":"","width":"-1","decimal":"0"},"display":"name","defaultDisplayOptions":{"displayOption":"2","showHidden":false,"indent":false,"format":"3","repeatMembers":true,"suppressColumns":"1","suppressRows":"1","dimensionNumberFormat":"","width":"-1","decimal":"0"},"financialCubeDataSource":false},"params":{"ribbonItems":[{"state":"DISABLED","label":"Save Data","url":"ui/adhoc/save","method":"POST","options":{}},{"state":"DISABLED","label":"Breakback","url":"breakback","method":"POST","options":{}},{"state":"DISABLED","label":"Drill Through","url":"ui/adhoc/drillThrough","method":"POST","options":{}},{"state":"DISABLED","label":"Calculation","url":"calculation","method":"POST","options":{"params":{"modelName":"1097_BashModel","artifactName":""},"id":"Calculation"}}],"notifications":[{"type":"CONFIRMATION","message":"You will lose the Adhoc state. Continue?","url":"ui/adhoc/zoomIn","method":"POST"}]}}');
+            //console.log(obj.id);
+
+            $('#MenuPage').load("MenuPage.html");
+            $('#AccountInfo').load("AccountInfo.html");
+            $('#NotificationHandler').load("NotificationHandler.html");
+            $('#Header').load("Header.html");
+            //var mydata = JSON.parse(adhocViewRD);
+            //console.log(mydata.id);
+
+        });
+    </script>
+</head>
+
+
+<body>
+    <div id="MenuPage"></div>
+    <div id="AccountInfo"></div>
+    <div id="NotificationHandler"></div>
+    <div id="Header"></div>
+
+    <!--<?!= include("MenuPage"); ?>-->
+    <!--<?!= include("AccountInfo"); ?>-->
+   <!-- <?!= include("NotificationHandler"); ?>-->
+    <!-- Header -->
+    <!--<?!= include("Header"); ?>-->
+    <!--<div id="MainPageBelowHeader">
+        <div id="fileCabinetDiv">
+            <div class="row" id="fileCabinetSearchBoxDiv">
+                <div class="col-10">
+                    <input type="text" class="form-control search-input fileCabinetSearchInput"
+                           placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
+                </div>
+                <div class="col-2 searchBox-rightIcon">
+                    <span class="input-group-text fileCabinetSearchBoxIcon" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+                </div>
+            </div>
+            <p id="noFilesFound" style="display: none;">No matches found</p>
+            <div id="divJsTreeExample">
+            </div>
+        </div>
+
+        <div id="dimensionMembersDiv" style="display:none">
+            <div id="backToFileCabinetFromDmDiv">
+                <p onclick="backToFileCabinetFromDM()"><i class="fa-solid fa-angle-left"></i> <span id="openedViewName"> </span></p>
+            </div>
+            <div id="selectedDimensionNameWithCellLabel">
+                <p>Dimension Member: <b id="dimensionNameWithRange"></b> </p>
+            </div>
+            <div class="row" id="DMSearchDiv">
+                <div class="col-10">
+                    <input type="text" class="form-control  dmSearchInput" id="DMSearchBox" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
+                </div>
+                <div class="col-2 searchBox-rightIcon">
+                    <span class="input-group-text dmSearchInputLabel" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+                </div>
+            </div>
+            <p id="noMemberFound" style="display: none;">No matches found</p>
+            <div id="dimensionMemberJsTree">
+            </div>
+            <div id="dimensionMemberSearchJsTree">
+            </div>
+        </div>
+
+    </div>
+
+    <div id="updateMemBtnDiv" style="display:none">
+        <button type="button" class="btn btn-primary btn-sm  " onclick="openDimensionMemberHierarchy()">
+            Update Selection
+        </button>
+    </div>
+
+    <div id="cancel_Select_DM_btn_div" style="display:none">
+        <button type="button" class="btn btn-light btn-sm  " onclick="backToFileCabinetFromDM()">
+            Cancel
+        </button>
+        <button type="button" id="dmApplyBtn" class="btn btn-primary btn-sm  dmApplyBtndisabled" onclick="updateTheValueInCellOnSelectClicked()">
+            Apply
+        </button>
+    </div>-->
+
+    </div>
+    <p id="loadingPlace" style="display:none"></p>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <script src="HttpAPI.js"></script>
+    <script src="Constants.js"></script>
+    <script src="FileCabinet_Script.js"></script>
+    <script src="Analyze.js"></script>
+    <script src="code.js"></script>
+    <script src="ReportHandler.js"></script>
+    <script src="DimensionMemberTree_Script.js"></script>
+    <script src="AnalyzeHttpCalls.js"></script>
+    <script src="ReportsHttpCalls.js"></script>
+</body>
+
+</html>
