@@ -665,7 +665,7 @@ function setRowColumnDimension(dimension, activeSS,[range, startIndex], valueInP
             if (format_map.hasOwnProperty('width')) {       
                 const widthInPx = (7 * parseInt(format_map.width) + 5)
                 //setRowColumnDimension('width', activeSS, [applyRange, startColumn], widthInPx)
-                range.format.columnWidth = widthInPx;
+                applyRange.format.columnWidth = widthInPx;
             }
             if (format_map.hasOwnProperty('bold')) {
                 if (format_map.bold) {
